@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TODO: replace with your paper's title / description / keywords -->
+  <title>GuidedVD: Video-Diffusion-Guided Sparse-View 3D Gaussian Splatting</title>
+  <meta name="description" content="GuidedVD: sparse-view 3D Gaussian Splatting guided by a video diffusion prior.">
+  <meta name="keywords" content="3D Gaussian Splatting, sparse view, video diffusion, novel view synthesis, NeRF">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="GuidedVD: Video-Diffusion-Guided Sparse-View 3DGS">
+  <meta property="og:description" content="Sparse-view 3D Gaussian Splatting guided by a video diffusion prior.">
+  <meta property="og:image" content="./static/images/teaser.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <!-- Bulma + plugins + icons (CDN, no build step needed) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.24/dist/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<!-- ===================== HERO / TITLE ===================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">GuidedVD: Video-Diffusion-Guided<br>Sparse-View 3D Gaussian Splatting</h1>
+          <h2 class="subtitle is-4">Conference / Journal Name, Year &nbsp; <!-- TODO --></h2>
+
+          <!-- TODO: authors & affiliations -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="#">First Author</a><sup>1</sup>,</span>
+            <span class="author-block"><a href="#">Second Author</a><sup>1,2</sup>,</span>
+            <span class="author-block"><a href="#">Third Author</a><sup>2</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Your University&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>2</sup>Your Lab</span>
+          </div>
+
+          <!-- Link buttons -->
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="fas fa-database"></i></span><span>Data</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.jpg" alt="GuidedVD teaser" class="teaser-img">
+      <h2 class="subtitle has-text-centered">
+        From as few as <b>3, 6, or 9</b> input views, GuidedVD reconstructs photorealistic novel views.
+        Renderings on the <i>Garden</i> scene compared to ground truth.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <!-- TODO: replace with your real abstract -->
+          <p>
+            Reconstructing 3D scenes from only a handful of images is severely ill-posed: standard
+            3D Gaussian Splatting overfits the sparse inputs and produces floaters and missing geometry
+            in unobserved regions. We present <b>GuidedVD</b>, which augments sparse-view 3D Gaussian
+            Splatting with a <i>video diffusion prior</i>. Along camera trajectories interpolated between
+            the input views, a pretrained video diffusion model synthesizes temporally consistent guidance
+            frames that supervise the Gaussian field in regions the input views never cover. This pushes
+            the optimization toward plausible, artifact-free geometry while keeping the efficiency of
+            explicit Gaussian rendering. Across the Mip-NeRF&nbsp;360 and Tanks&nbsp;&amp;&nbsp;Temples
+            benchmarks at 3/6/9 input views, GuidedVD consistently improves rendering quality over the
+            sparse-view baseline.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Method</h2>
+        <!-- TODO: drop your pipeline figure at static/images/method.png -->
+        <img src="./static/images/method.png" alt="Method overview" class="method-img"
+             onerror="this.style.opacity=0.25;this.alt='(add static/images/method.png)';">
+        <div class="content has-text-justified mt-4">
+          <p>
+            Given sparse input views with known camera poses, we initialize a Gaussian field from a
+            point cloud (e.g. DUSt3R) and render guidance trajectories with a frozen base renderer.
+            A video diffusion model refines these trajectories into consistent pseudo-observations,
+            which are distilled back into the Gaussian field during optimization.
+            <i>Replace this text and figure with your own.</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUALITATIVE RESULTS (carousel) ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+    <p class="has-text-centered mb-5">Ground truth vs. our renderings (9 input views).</p>
+    <div id="results-carousel" class="carousel results-carousel">
+      <div class="item"><img src="./static/images/comparisons/garden_gt_vs_ours.jpg" alt="Garden"><p class="has-text-centered">Garden</p></div>
+      <div class="item"><img src="./static/images/comparisons/bicycle_gt_vs_ours.jpg" alt="Bicycle"><p class="has-text-centered">Bicycle</p></div>
+      <div class="item"><img src="./static/images/comparisons/kitchen_gt_vs_ours.jpg" alt="Kitchen"><p class="has-text-centered">Kitchen</p></div>
+      <div class="item"><img src="./static/images/comparisons/truck_gt_vs_ours.jpg" alt="Truck"><p class="has-text-centered">Truck</p></div>
+    </div>
+
+    <h3 class="title is-4 has-text-centered mt-6">Effect of the Number of Input Views</h3>
+    <img src="./static/images/comparisons/garden_sparsity.jpg" alt="Sparsity progression" class="teaser-img">
+    <p class="has-text-centered">More input views yield sharper detail; quality degrades gracefully down to 3 views.</p>
+  </div>
+</section>
+
+<!-- ===================== QUANTITATIVE RESULTS ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+    <p class="has-text-centered mb-4">
+      PSNR&nbsp;(dB)&nbsp;&uarr; on held-out test views (every-8th split). Higher is better.
+      <br><span class="is-size-7 has-text-grey">Measured with the GuidedVD pipeline; replace with your final paper numbers.</span>
+    </p>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered results-table">
+        <thead>
+          <tr><th>Dataset</th><th>Scene</th><th>3 views</th><th>6 views</th><th>9 views</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="5">Mip-NeRF&nbsp;360</td><td>Bicycle</td><td>14.77</td><td>16.56</td><td>17.51</td></tr>
+          <tr><td>Flowers</td><td>11.02</td><td>12.48</td><td>13.69</td></tr>
+          <tr><td>Garden</td><td>14.42</td><td>17.63</td><td>18.95</td></tr>
+          <tr><td>Stump</td><td>16.33</td><td>17.69</td><td>17.89</td></tr>
+          <tr><td>Kitchen</td><td>16.16</td><td>18.64</td><td>18.87</td></tr>
+        </tbody>
+        <tbody>
+          <tr><td rowspan="5">Tanks&nbsp;&amp;&nbsp;Temples<br><span class="is-size-7 has-text-grey">(3&rarr;4 views)</span></td><td>Truck</td><td>13.97</td><td>15.62</td><td>16.44</td></tr>
+          <tr><td>Train</td><td>12.70</td><td>12.67</td><td>14.28</td></tr>
+          <tr><td>Barn</td><td>13.13</td><td>13.73</td><td>14.40</td></tr>
+          <tr><td>Ignatius</td><td>11.15</td><td>11.71</td><td>12.17</td></tr>
+          <tr><td>Caterpillar</td><td>11.14</td><td>12.20</td><td>13.53</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIDEO COMPARISON (optional, wired but commented) ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
+    <p class="has-text-centered">
+      <i>Optional.</i> To add a baseline&nbsp;vs.&nbsp;ours wipe slider, concatenate the two clips
+      side-by-side into one MP4 and drop it under <code>static/videos/</code>, then uncomment the block below.
+    </p>
+    <!--
+    <div class="video-compare-container">
+      <video class="video" loop playsinline autoplay muted onplay="resizeAndPlay(this)">
+        <source src="./static/videos/garden_baseline_vs_ours_x264.mp4" type="video/mp4">
+      </video>
+      <canvas class="videoMerge"></canvas>
+    </div>
+    -->
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@article{guidedvd,
+  title   = {GuidedVD: Video-Diffusion-Guided Sparse-View 3D Gaussian Splatting},
+  author  = {Author, First and Author, Second and Author, Third},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ===================== FOOTER (keep attribution: CC BY-SA 4.0) ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This website is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This page was built using the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>,
+            which was adopted from the <a href="https://nerfies.github.io">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.24/dist/js/bulma-carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/js/bulma-slider.min.js"></script>
+<script src="./static/js/video_comparison.js"></script>
+<script src="./static/js/index.js"></script>
+</body>
+</html>
