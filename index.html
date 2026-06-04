@@ -189,30 +189,31 @@
   </div>
 </section>
 
-<!-- ===================== VIDEO COMPARISONS (360 orbit renderings) ===================== -->
+<!-- ===================== VIDEO COMPARISONS (360 orbit, Baseline vs Ours wipe) ===================== -->
 <section class="section" id="videos">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
     <p class="has-text-centered mb-5">
-      Full <b>360&deg; orbit</b> renderings from <b>9 input views</b> (GradeS, s9). Click any clip to play.
+      <b>360&deg; orbit</b> renderings from <b>9 input views</b>. Drag the slider to compare &mdash;
+      <b>left: Baseline</b>, <b>right: Ours (GradeS)</b>. Same camera trajectory for both.
     </p>
 
     <h3 class="title is-4 has-text-centered">Mip-NeRF&nbsp;360</h3>
     <div class="columns is-multiline is-centered">
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/bicycle.jpg"><source src="./static/videos/bicycle_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Bicycle</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/flowers.jpg"><source src="./static/videos/flowers_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Flowers</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/garden.jpg"><source src="./static/videos/garden_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Garden</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/stump.jpg"><source src="./static/videos/stump_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Stump</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/counter.jpg"><source src="./static/videos/counter_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Counter</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bicycle_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Bicycle</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/flowers_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Flowers</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/garden_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Garden</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/stump_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Stump</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/counter_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Counter</p></div>
     </div>
 
     <h3 class="title is-4 has-text-centered mt-5">Tanks&nbsp;&amp;&nbsp;Temples</h3>
     <div class="columns is-multiline is-centered">
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/truck.jpg"><source src="./static/videos/truck_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Truck</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/train.jpg"><source src="./static/videos/train_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Train</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/barn.jpg"><source src="./static/videos/barn_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Barn</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/ignatius.jpg"><source src="./static/videos/ignatius_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Ignatius</p></div>
-      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/caterpillar.jpg"><source src="./static/videos/caterpillar_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Caterpillar</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/truck_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Truck</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/train_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Train</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/barn_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Barn</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/ignatius_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Ignatius</p></div>
+      <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/caterpillar_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Caterpillar</p></div>
     </div>
   </div>
 </section>
