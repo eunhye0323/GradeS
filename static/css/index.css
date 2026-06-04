@@ -66,4 +66,14 @@ body { font-family: 'Google Sans', 'Noto Sans', sans-serif; }
   background-repeat: no-repeat;
 }
 
+/* 360 orbit video gallery */
+.orbit-video {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  background: #000;
+  display: block;
+}
+.video-caption { margin-top: 0.5rem; font-weight: 600; color: #4a4a4a; }
+
 .footer { padding: 2rem 1.5rem; }

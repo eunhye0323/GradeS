@@ -6,6 +6,7 @@
   <!-- TODO: replace with your paper's title / description / keywords -->
   <title>GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting</title>
   <meta name="description" content="GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting">
+  <meta name="author" content="Eunhye Choi">
   <meta name="keywords" content="3D Gaussian Splatting, sparse view, video diffusion, novel view synthesis">
 
   <!-- Open Graph / social preview -->
@@ -38,13 +39,12 @@
 
           <!-- TODO: authors & affiliations -->
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="#">First Author</a><sup>1</sup>,</span>
-            <span class="author-block"><a href="#">Second Author</a><sup>1,2</sup>,</span>
-            <span class="author-block"><a href="#">Third Author</a><sup>2</sup></span>
+            <span class="author-block"><a href="#">Eunhye Choi</a><sup>1</sup></span>
+            <!-- <span class="author-block"><a href="#">Second Author</a><sup>1,2</sup>,</span> -->
+            <!-- <span class="author-block"><a href="#">Third Author</a><sup>2</sup></span> -->
           </div>
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Your University&nbsp;&nbsp;</span>
-            <span class="author-block"><sup>2</sup>Your Lab</span>
+            <span class="author-block"><sup>1</sup>KAIST, School of Computing&nbsp;&nbsp;</span>
           </div>
 
           <!-- Link buttons -->
@@ -189,22 +189,31 @@
   </div>
 </section>
 
-<!-- ===================== VIDEO COMPARISON (optional, wired but commented) ===================== -->
-<section class="section">
+<!-- ===================== VIDEO COMPARISONS (360 orbit renderings) ===================== -->
+<section class="section" id="videos">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
-    <p class="has-text-centered">
-      <i>Optional.</i> To add a baseline&nbsp;vs.&nbsp;ours wipe slider, concatenate the two clips
-      side-by-side into one MP4 and drop it under <code>static/videos/</code>, then uncomment the block below.
+    <p class="has-text-centered mb-5">
+      Full <b>360&deg; orbit</b> renderings from <b>9 input views</b> (GradeS, s9). Click any clip to play.
     </p>
-    <!--
-    <div class="video-compare-container">
-      <video class="video" loop playsinline autoplay muted onplay="resizeAndPlay(this)">
-        <source src="./static/videos/garden_baseline_vs_ours_x264.mp4" type="video/mp4">
-      </video>
-      <canvas class="videoMerge"></canvas>
+
+    <h3 class="title is-4 has-text-centered">Mip-NeRF&nbsp;360</h3>
+    <div class="columns is-multiline is-centered">
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/bicycle.jpg"><source src="./static/videos/bicycle_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Bicycle</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/flowers.jpg"><source src="./static/videos/flowers_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Flowers</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/garden.jpg"><source src="./static/videos/garden_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Garden</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/stump.jpg"><source src="./static/videos/stump_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Stump</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/counter.jpg"><source src="./static/videos/counter_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Counter</p></div>
     </div>
-    -->
+
+    <h3 class="title is-4 has-text-centered mt-5">Tanks&nbsp;&amp;&nbsp;Temples</h3>
+    <div class="columns is-multiline is-centered">
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/truck.jpg"><source src="./static/videos/truck_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Truck</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/train.jpg"><source src="./static/videos/train_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Train</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/barn.jpg"><source src="./static/videos/barn_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Barn</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/ignatius.jpg"><source src="./static/videos/ignatius_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Ignatius</p></div>
+      <div class="column is-half"><video class="orbit-video" controls loop muted playsinline preload="none" poster="./static/images/video_posters/caterpillar.jpg"><source src="./static/videos/caterpillar_orbit_s9.mp4" type="video/mp4"></video><p class="has-text-centered video-caption">Caterpillar</p></div>
+    </div>
   </div>
 </section>
 
@@ -214,7 +223,7 @@
     <h2 class="title is-3">BibTeX</h2>
     <pre><code>@article{grades,
   title   = {GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting},
-  author  = {Author, First and Author, Second and Author, Third},
+  author  = {Choi, Eunhye},
   journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
 }</code></pre>
