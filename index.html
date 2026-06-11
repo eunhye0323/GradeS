@@ -178,7 +178,7 @@
     <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
     <p class="has-text-centered mb-5">
       <b>360&deg; orbit</b> renderings from <b>9 input views</b>. Drag each slider to compare; same camera trajectory throughout.
-      Per scene: <b>left</b> = Baseline vs. <b>Our Baseline</b> (geometry), <b>right</b> = Baseline vs. <b>GuidedVD</b>.
+      Per scene: <b>left</b> = Baseline vs. <b>Our Baseline</b> (geometry), <b>right</b> = GuidedVD vs. <b>Ours</b>.
     </p>
 
     <h3 class="title is-4 has-text-centered">Mip-NeRF&nbsp;360</h3>
@@ -187,48 +187,16 @@
         <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bicycle_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
         <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bicycle_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
       </div>
-      <h4 class="title is-5 has-text-centered mt-4 mb-2">Flowers</h4>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Kitchen</h4>
       <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/flowers_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/flowers_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
-      </div>
-      <h4 class="title is-5 has-text-centered mt-4 mb-2">Garden</h4>
-      <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/garden_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/garden_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
-      </div>
-      <h4 class="title is-5 has-text-centered mt-4 mb-2">Stump</h4>
-      <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/stump_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/stump_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
-      </div>
-
-    <h3 class="title is-4 has-text-centered mt-5">Mip-NeRF&nbsp;360 &mdash; Indoor</h3>
-      <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/kitchen_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Kitchen &mdash; GuidedVD vs. Ours</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bonsai_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Bonsai &mdash; GuidedVD vs. Ours</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/kitchen_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
       </div>
 
     <h3 class="title is-4 has-text-centered mt-5">Tanks&nbsp;&amp;&nbsp;Temples</h3>
-      <h4 class="title is-5 has-text-centered mt-4 mb-2">Truck</h4>
-      <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/truck_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/truck_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
-      </div>
       <h4 class="title is-5 has-text-centered mt-4 mb-2">Train</h4>
       <div class="columns is-centered">
         <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/train_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
         <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/train_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
-      </div>
-      <h4 class="title is-5 has-text-centered mt-4 mb-2">Barn</h4>
-      <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/barn_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/barn_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
-      </div>
-      <h4 class="title is-5 has-text-centered mt-4 mb-2">Ignatius</h4>
-      <div class="columns is-centered">
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/ignatius_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
-        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/ignatius_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
       </div>
   </div>
 </section>
@@ -240,7 +208,6 @@
     <pre><code>@article{grades,
   title   = {GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting},
   author  = {Choi, Eunhye},
-  journal = {arXiv preprint arXiv:XXXX.XXXXX},
   year    = {2026}
 }</code></pre>
   </div>

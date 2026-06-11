@@ -24,7 +24,7 @@ body { font-family: 'Google Sans', 'Noto Sans', sans-serif; }
   border-radius: 6px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.12);
 }
-.method-img { max-width: 900px; }
+.method-img { width: 100%; max-width: 900px; height: auto; }
 
 /* Carousel items */
 .results-carousel { overflow: hidden; }
@@ -40,7 +40,29 @@ body { font-family: 'Google Sans', 'Noto Sans', sans-serif; }
 
 /* Results table */
 .results-table th { background-color: #f5f5f5; }
-.results-table { font-variant-numeric: tabular-nums; }
+.results-table {
+  font-variant-numeric: tabular-nums;
+  font-size: 0.8rem;
+  margin: 0 auto;        /* center the table within its container */
+}
+.results-table th,
+.results-table td {
+  padding: 0.3em 0.45em;
+  white-space: nowrap;   /* keep numbers on one line so widths stay compact */
+  vertical-align: middle;
+}
+.table-container {
+  display: flex;
+  justify-content: safe center;  /* center when it fits, scroll from left when it overflows */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media screen and (max-width: 768px) {
+  .results-table { font-size: 0.68rem; }
+  .results-table th,
+  .results-table td { padding: 0.25em 0.3em; }
+}
 
 /* BibTeX block */
 #BibTeX pre {
