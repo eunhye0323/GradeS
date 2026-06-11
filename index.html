@@ -61,18 +61,6 @@
   </div>
 </section>
 
-<!-- ===================== TEASER ===================== -->
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <img src="./static/images/teaser.jpg" alt="GradeS teaser" class="teaser-img">
-      <h2 class="subtitle has-text-centered">
-        From as few input views, GradeS synthesizes photorealistic novel views.
-      </h2>
-    </div>
-  </div>
-</section>
-
 <!-- ===================== ABSTRACT ===================== -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -140,9 +128,9 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
     <p class="has-text-centered mb-4">
-      <br>PSNR&nbsp;&uarr;, SSIM&nbsp;&uarr;, and LPIPS&nbsp;&darr; on held-out test views (9 input views).<br/>
-      <br>Methods are grouped into <i>Without Diffusion</i> (Baseline, Our Baseline) and
-      <i>With Diffusion</i> (GuidedVD, Ours). <b>Best</b> per metric is in bold.<br/>
+      PSNR&nbsp;&uarr;, SSIM&nbsp;&uarr;, and LPIPS&nbsp;&darr; on held-out test views (9 input views).
+      Methods are grouped into <i>Without Diffusion</i> (Baseline, Our Baseline) and
+      <i>With Diffusion</i> (GuidedVD, Ours). <b>Best</b> per metric is in bold.
     </p>
     <div class="table-container">
       <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered results-table">
@@ -213,9 +201,8 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Ablation</h2>
     <p class="has-text-centered mb-5">
-      <b>360&deg; orbit</b> renderings from <b>9 input views</b>. Drag the slider to compare; same camera trajectory throughout.
+      We use the <b>indoor Kitchen scene</b> as a bounded-scene ablation to test whether reliability-guided supervision remains effective when the geometry is relatively well constrained.
     </p>
-
       <h4 class="title is-5 has-text-centered mt-4 mb-2">Kitchen</h4>
       <div class="columns is-centered">
         <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/kitchen_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
