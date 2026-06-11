@@ -50,6 +50,7 @@ body { font-family: 'Google Sans', 'Noto Sans', sans-serif; }
   padding: 0.3em 0.45em;
   white-space: nowrap;   /* keep numbers on one line so widths stay compact */
   vertical-align: middle;
+  text-align: center;    /* center all cells, incl. grouped header labels */
 }
 .table-container {
   display: flex;

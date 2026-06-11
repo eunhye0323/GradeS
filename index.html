@@ -85,7 +85,7 @@
             Novel view synthesis from a small number of input views is an important problem in various applications, including virtual and augmented reality, digital twins, robotics, and autonomous driving simulation. However, when the input views are sparse, Gaussian Splatting-based methods often struggle to reconstruct stable scene geometry. This problem becomes more severe in unbounded outdoor scenes, where limited view overlap and large unobserved regions lead to inaccurate depth estimation and floating artifacts. Recent studies address these limitations either by stabilizing geometry or by using diffusion-generated pseudo-views as additional supervision. However, geometry stabilization alone cannot sufficiently constrain unobserved regions, while generated pseudo-views may contain hallucinated or temporally inconsistent content. Using such generated views uniformly as supervision can therefore accumulate errors during optimization.
           </p>
           <p>
-            This research proposes a reliability-guided diffusion supervision method for controlling the uncertainty of generated pseudo-views in sparse-view 3D Gaussian Splatting. The proposed method combines depth-consistency regularization with reliability-guided pseudo-view supervision. It stabilizes the depth structure by regularizing the depth rendered at pseudo-view cameras toward the depth rendered by a pre-trained baseline 3D Gaussian model, mainly in observed regions. Dense-stereo geometry is used for point-cloud initialization and as a reliability prior. The supervision strength of generated views is then adjusted by combining hallucination detection, frame-level reliability, and pixel-level reliability. During diffusion sampling, latent-space blending preserves information in observed regions. In this way, generated pseudo-views are used as reliability-weighted cues for complementing unobserved regions, improving geometric stability under limited input views and reducing distortions caused by unreliable generated views.
+            GradeS proposes <b>a reliability-guided diffusion supervision method for controlling the uncertainty of generated pseudo-views in sparse-view 3D Gaussian Splatting</b>. The proposed method combines depth-consistency regularization with reliability-guided pseudo-view supervision. It stabilizes the depth structure by regularizing the depth rendered at pseudo-view cameras toward the depth rendered by a pre-trained baseline 3D Gaussian model, mainly in observed regions. Dense-stereo geometry is used for point-cloud initialization and as a reliability prior. The supervision strength of generated views is then adjusted by combining hallucination detection, frame-level reliability, and pixel-level reliability. During diffusion sampling, latent-space blending preserves information in observed regions. In this way, generated pseudo-views are used as reliability-weighted cues for complementing unobserved regions, improving geometric stability under limited input views and reducing distortions caused by unreliable generated views.
           </p>
         </div>
       </div>
@@ -104,19 +104,31 @@
              onerror="this.style.opacity=0.25;this.alt='(add static/images/Pipeline.png)';">
         <div class="content has-text-justified mt-4">
           <p>
-            GradeS consists of a four-stage pipeline for sparse-view 3D Gaussian Splatting. It first
-            estimates an initial geometry from sparse input views, providing point clouds, depth cues,
-            and confidence information as the basis for reconstruction. The method then stabilizes the
-            3DGS renderer through geometry-aware scene grounding, using rendered RGB, depth, and
-            confidence maps as reliable conditioning signals.
+            GradeS consists of four stages for reliable sparse-view 3D Gaussian Splatting with
+            diffusion-generated supervision. First, we <b>estimate an initial scene geometry from
+            sparse input views</b>. The sparse images are used to construct an initial 3D
+            representation, including point clouds, depth information, and confidence cues, which serve
+            as the geometric foundation for the following stages.
           </p>
           <p>
-            During video diffusion generation, scene-grounded latent guidance preserves known regions
-            while allowing unseen regions to be synthesized. The generated pseudo-views are then used
-            for 3DGS optimization, but not as direct ground truth. Instead, they are selected and
-            weighted based on hallucination detection, frame reliability, pixel uncertainty, and
-            geometry regularization. This reliability-guided supervision reduces the impact of
-            hallucinated content and enables more stable novel view synthesis from sparse inputs.
+            Second, we perform <b>geometry-aware scene grounding to stabilize the 3DGS renderer</b>
+            before applying video diffusion. The renderer produces RGB images, depth maps, and
+            confidence maps, which provide geometry-aware conditioning signals. This step reduces
+            unstable geometry and floaters that can otherwise be propagated into generated pseudo-views.
+          </p>
+          <p>
+            Third, we apply <b>scene-grounded latent guidance during video diffusion generation</b>.
+            Through stage-wise latent blending, reliable known regions are preserved, while unseen or
+            weakly observed regions are synthesized by the diffusion model. This allows the model to
+            complete missing scene content without unnecessarily modifying already observed regions.
+          </p>
+          <p>
+            Finally, we <b>optimize 3DGS using reliability-guided generated supervision</b>. Generated
+            pseudo-views are not treated as direct ground truth; instead, they are selected and
+            weighted according to hallucination detection, frame-level reliability, pixel-level
+            uncertainty, and geometry regularization. By controlling the influence of unreliable
+            generated content, the proposed method improves the stability and perceptual quality of
+            sparse-view novel view synthesis.
           </p>
         </div>
       </div>
