@@ -119,11 +119,19 @@
              onerror="this.style.opacity=0.25;this.alt='(add static/images/Pipeline.png)';">
         <div class="content has-text-justified mt-4">
           <p>
-            Given sparse input views with known camera poses, we initialize a Gaussian field from a
-            point cloud (e.g. DUSt3R) and render guidance trajectories with a frozen base renderer.
-            A video diffusion model refines these trajectories into consistent pseudo-observations,
-            which are distilled back into the Gaussian field during optimization.
-            <i>Replace this text and figure with your own.</i>
+            GradeS consists of a four-stage pipeline for sparse-view 3D Gaussian Splatting. It first
+            estimates an initial geometry from sparse input views, providing point clouds, depth cues,
+            and confidence information as the basis for reconstruction. The method then stabilizes the
+            3DGS renderer through geometry-aware scene grounding, using rendered RGB, depth, and
+            confidence maps as reliable conditioning signals.
+          </p>
+          <p>
+            During video diffusion generation, scene-grounded latent guidance preserves known regions
+            while allowing unseen regions to be synthesized. The generated pseudo-views are then used
+            for 3DGS optimization, but not as direct ground truth. Instead, they are selected and
+            weighted based on hallucination detection, frame reliability, pixel uncertainty, and
+            geometry regularization. This reliability-guided supervision reduces the impact of
+            hallucinated content and enables more stable novel view synthesis from sparse inputs.
           </p>
         </div>
       </div>
@@ -136,27 +144,43 @@
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
     <p class="has-text-centered mb-4">
-      PSNR&nbsp;(dB)&nbsp;&uarr; on held-out test views (every-8th split). Higher is better.
-      <br><span class="is-size-7 has-text-grey">Measured with our pipeline; replace with your final paper numbers.</span>
+      PSNR&nbsp;&uarr;, SSIM&nbsp;&uarr;, and LPIPS&nbsp;&darr; on held-out test views (9 input views).
+      Methods are grouped into <i>Without Diffusion</i> (Baseline, Our Baseline) and
+      <i>With Diffusion</i> (GuidedVD, Ours). <b>Best</b> per metric is in bold.
     </p>
     <div class="table-container">
       <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered results-table">
         <thead>
-          <tr><th>Dataset</th><th>Scene</th><th>3 views</th><th>6 views</th><th>9 views</th></tr>
+          <tr>
+            <th rowspan="3">Dataset</th><th rowspan="3">Scene</th>
+            <th colspan="6">Without Diffusion</th>
+            <th colspan="6">With Diffusion</th>
+          </tr>
+          <tr>
+            <th colspan="3">Baseline</th>
+            <th colspan="3">Our Baseline</th>
+            <th colspan="3">GuidedVD</th>
+            <th colspan="3">Ours</th>
+          </tr>
+          <tr>
+            <th>PSNR&uarr;</th><th>SSIM&uarr;</th><th>LPIPS&darr;</th>
+            <th>PSNR&uarr;</th><th>SSIM&uarr;</th><th>LPIPS&darr;</th>
+            <th>PSNR&uarr;</th><th>SSIM&uarr;</th><th>LPIPS&darr;</th>
+            <th>PSNR&uarr;</th><th>SSIM&uarr;</th><th>LPIPS&darr;</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td rowspan="5">Mip-NeRF&nbsp;360</td><td>Bicycle</td><td>14.77</td><td>16.56</td><td>17.51</td></tr>
-          <tr><td>Flowers</td><td>11.02</td><td>12.48</td><td>13.69</td></tr>
-          <tr><td>Garden</td><td>14.42</td><td>17.63</td><td>18.95</td></tr>
-          <tr><td>Stump</td><td>16.33</td><td>17.69</td><td>17.89</td></tr>
-          <tr><td>Kitchen</td><td>16.16</td><td>18.64</td><td>18.87</td></tr>
+          <tr><td rowspan="4">Mip-NeRF&nbsp;360</td><td>Garden</td><td>17.51</td><td>0.378</td><td>0.438</td><td>18.58</td><td>0.422</td><td>0.445</td><td>18.95</td><td>0.425</td><td>0.437</td><td><b>19.00</b></td><td><b>0.450</b></td><td><b>0.419</b></td></tr>
+          <tr><td>Bicycle</td><td>15.44</td><td>0.262</td><td>0.528</td><td>17.23</td><td>0.342</td><td>0.496</td><td>17.51</td><td>0.339</td><td>0.507</td><td><b>17.74</b></td><td><b>0.354</b></td><td><b>0.480</b></td></tr>
+          <tr><td>Stump</td><td>16.78</td><td>0.287</td><td>0.532</td><td>17.67</td><td>0.342</td><td>0.524</td><td>17.89</td><td>0.354</td><td>0.530</td><td><b>17.98</b></td><td><b>0.370</b></td><td><b>0.518</b></td></tr>
+          <tr><td>Flowers</td><td>12.62</td><td>0.195</td><td>0.629</td><td>13.13</td><td>0.218</td><td>0.613</td><td>13.69</td><td>0.224</td><td>0.596</td><td><b>13.72</b></td><td><b>0.227</b></td><td><b>0.591</b></td></tr>
         </tbody>
         <tbody>
-          <tr><td rowspan="5">Tanks&nbsp;&amp;&nbsp;Temples<br><span class="is-size-7 has-text-grey">(3&rarr;4 views)</span></td><td>Truck</td><td>13.97</td><td>15.62</td><td>16.44</td></tr>
-          <tr><td>Train</td><td>12.70</td><td>12.67</td><td>14.28</td></tr>
-          <tr><td>Barn</td><td>13.13</td><td>13.73</td><td>14.40</td></tr>
-          <tr><td>Ignatius</td><td>11.15</td><td>11.71</td><td>12.17</td></tr>
-          <tr><td>Caterpillar</td><td>11.14</td><td>12.20</td><td>13.53</td></tr>
+          <tr><td rowspan="5">Tanks&nbsp;&amp;&nbsp;Temples</td><td>Truck</td><td>14.80</td><td>0.502</td><td>0.402</td><td>15.15</td><td>0.541</td><td>0.398</td><td>16.44</td><td>0.551</td><td>0.399</td><td><b>16.50</b></td><td><b>0.559</b></td><td><b>0.384</b></td></tr>
+          <tr><td>Barn</td><td>14.14</td><td>0.457</td><td>0.530</td><td>14.44</td><td>0.464</td><td>0.511</td><td>14.40</td><td>0.474</td><td>0.516</td><td><b>14.45</b></td><td><b>0.479</b></td><td><b>0.507</b></td></tr>
+          <tr><td>Train</td><td>13.78</td><td>0.478</td><td>0.456</td><td>13.95</td><td>0.504</td><td>0.458</td><td>14.28</td><td>0.492</td><td>0.470</td><td><b>14.32</b></td><td><b>0.508</b></td><td><b>0.453</b></td></tr>
+          <tr><td>Caterpillar</td><td>12.73</td><td>0.312</td><td>0.558</td><td>13.28</td><td>0.348</td><td>0.564</td><td>13.53</td><td>0.354</td><td>0.554</td><td><b>13.59</b></td><td><b>0.355</b></td><td><b>0.550</b></td></tr>
+          <tr><td>Ignatius</td><td>11.45</td><td>0.243</td><td>0.588</td><td>11.94</td><td>0.279</td><td>0.606</td><td>12.17</td><td><b>0.284</b></td><td>0.587</td><td><b>12.21</b></td><td><b>0.284</b></td><td><b>0.585</b></td></tr>
         </tbody>
       </table>
     </div>
