@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- TODO: replace with your paper's title / description / keywords -->
+  <title>GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting</title>
+  <meta name="description" content="GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting">
+  <meta name="author" content="Eunhye Choi">
+  <meta name="keywords" content="3D Gaussian Splatting, sparse view, video diffusion, novel view synthesis">
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting">
+  <meta property="og:description" content="GradeS: Geometry-aware, reliability-graded diffusion supervision for sparse-view 3D Gaussian Splatting.">
+  <meta property="og:image" content="./static/images/teaser.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="./static/images/favicon.ico">
+
+  <!-- Bulma + plugins + icons (CDN, no build step needed) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.24/dist/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.4/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+</head>
+<body>
+
+<!-- ===================== HERO / TITLE ===================== -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title"><span style="color:#3273dc">GradeS</span>:<br>Geometry-Aware Reliability-Guided Diffusion Supervision<br>for Sparse-View 3D Gaussian Splatting</h1>
+          <h2 class="subtitle is-4">2026-1  / CS.59900 Resource Efficient AI Research &nbsp; <!-- TODO --></h2>
+
+          <!-- TODO: authors & affiliations -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="#">Eunhye Choi</a><sup>1</sup></span>
+            <!-- <span class="author-block"><a href="#">Second Author</a><sup>1,2</sup>,</span> -->
+            <!-- <span class="author-block"><a href="#">Third Author</a><sup>2</sup></span> -->
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>KAIST, School of Computing&nbsp;&nbsp;</span>
+          </div>
+
+          <!-- Link buttons -->
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span><span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="ai ai-arxiv"></i></span><span>arXiv</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="external-link button is-rounded is-dark">
+                <span class="icon"><i class="fas fa-database"></i></span><span>Data</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEASER ===================== -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="./static/images/teaser.jpg" alt="GradeS teaser" class="teaser-img">
+      <h2 class="subtitle has-text-centered">
+        From as few as <b>3, 6, or 9</b> input views, GradeS reconstructs photorealistic novel views.
+        Renderings on the <i>Garden</i> scene compared to ground truth.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ABSTRACT ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Novel view synthesis from a small number of input views is an important problem in various applications, including virtual and augmented reality, digital twins, robotics, and autonomous driving simulation. However, when the input views are sparse, Gaussian Splatting-based methods often struggle to reconstruct stable scene geometry. This problem becomes more severe in unbounded outdoor scenes, where limited view overlap and large unobserved regions lead to inaccurate depth estimation and floating artifacts. Recent studies address these limitations either by stabilizing geometry or by using diffusion-generated pseudo-views as additional supervision. However, geometry stabilization alone cannot sufficiently constrain unobserved regions, while generated pseudo-views may contain hallucinated or temporally inconsistent content. Using such generated views uniformly as supervision can therefore accumulate errors during optimization.
+          </p>
+          <p>
+            This research proposes a reliability-guided diffusion supervision method for controlling the uncertainty of generated pseudo-views in sparse-view 3D Gaussian Splatting. The proposed method combines depth-consistency regularization with reliability-guided pseudo-view supervision. It stabilizes the depth structure by regularizing the depth rendered at pseudo-view cameras toward the depth rendered by a pre-trained baseline 3D Gaussian model, mainly in observed regions. Dense-stereo geometry is used for point-cloud initialization and as a reliability prior. The supervision strength of generated views is then adjusted by combining hallucination detection, frame-level reliability, and pixel-level reliability. During diffusion sampling, latent-space blending preserves information in observed regions. In this way, generated pseudo-views are used as reliability-weighted cues for complementing unobserved regions, improving geometric stability under limited input views and reducing distortions caused by unreliable generated views.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== METHOD ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Method</h2>
+        <!-- TODO: drop your pipeline figure at static/images/method.png -->
+        <img src="./static/images/method.png" alt="Method overview" class="method-img"
+             onerror="this.style.opacity=0.25;this.alt='(add static/images/method.png)';">
+        <div class="content has-text-justified mt-4">
+          <p>
+            Given sparse input views with known camera poses, we initialize a Gaussian field from a
+            point cloud (e.g. DUSt3R) and render guidance trajectories with a frozen base renderer.
+            A video diffusion model refines these trajectories into consistent pseudo-observations,
+            which are distilled back into the Gaussian field during optimization.
+            <i>Replace this text and figure with your own.</i>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== QUALITATIVE RESULTS (carousel) ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Qualitative Results</h2>
+    <p class="has-text-centered mb-5">Ground truth vs. our renderings (9 input views).</p>
+    <div id="results-carousel" class="carousel results-carousel">
+      <div class="item"><img src="./static/images/comparisons/garden_gt_vs_ours.jpg" alt="Garden"><p class="has-text-centered">Garden</p></div>
+      <div class="item"><img src="./static/images/comparisons/bicycle_gt_vs_ours.jpg" alt="Bicycle"><p class="has-text-centered">Bicycle</p></div>
+      <div class="item"><img src="./static/images/comparisons/kitchen_gt_vs_ours.jpg" alt="Kitchen"><p class="has-text-centered">Kitchen</p></div>
+      <div class="item"><img src="./static/images/comparisons/truck_gt_vs_ours.jpg" alt="Truck"><p class="has-text-centered">Truck</p></div>
+    </div>
+
+    <h3 class="title is-4 has-text-centered mt-6">Effect of the Number of Input Views</h3>
+    <img src="./static/images/comparisons/garden_sparsity.jpg" alt="Sparsity progression" class="teaser-img">
+    <p class="has-text-centered">More input views yield sharper detail; quality degrades gracefully down to 3 views.</p>
+  </div>
+</section>
+
+<!-- ===================== QUANTITATIVE RESULTS ===================== -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Quantitative Results</h2>
+    <p class="has-text-centered mb-4">
+      PSNR&nbsp;(dB)&nbsp;&uarr; on held-out test views (every-8th split). Higher is better.
+      <br><span class="is-size-7 has-text-grey">Measured with our pipeline; replace with your final paper numbers.</span>
+    </p>
+    <div class="table-container">
+      <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth has-text-centered results-table">
+        <thead>
+          <tr><th>Dataset</th><th>Scene</th><th>3 views</th><th>6 views</th><th>9 views</th></tr>
+        </thead>
+        <tbody>
+          <tr><td rowspan="5">Mip-NeRF&nbsp;360</td><td>Bicycle</td><td>14.77</td><td>16.56</td><td>17.51</td></tr>
+          <tr><td>Flowers</td><td>11.02</td><td>12.48</td><td>13.69</td></tr>
+          <tr><td>Garden</td><td>14.42</td><td>17.63</td><td>18.95</td></tr>
+          <tr><td>Stump</td><td>16.33</td><td>17.69</td><td>17.89</td></tr>
+          <tr><td>Kitchen</td><td>16.16</td><td>18.64</td><td>18.87</td></tr>
+        </tbody>
+        <tbody>
+          <tr><td rowspan="5">Tanks&nbsp;&amp;&nbsp;Temples<br><span class="is-size-7 has-text-grey">(3&rarr;4 views)</span></td><td>Truck</td><td>13.97</td><td>15.62</td><td>16.44</td></tr>
+          <tr><td>Train</td><td>12.70</td><td>12.67</td><td>14.28</td></tr>
+          <tr><td>Barn</td><td>13.13</td><td>13.73</td><td>14.40</td></tr>
+          <tr><td>Ignatius</td><td>11.15</td><td>11.71</td><td>12.17</td></tr>
+          <tr><td>Caterpillar</td><td>11.14</td><td>12.20</td><td>13.53</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== VIDEO COMPARISONS (two wipes per scene) ===================== -->
+<section class="section" id="videos">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Video Comparisons</h2>
+    <p class="has-text-centered mb-5">
+      <b>360&deg; orbit</b> renderings from <b>9 input views</b>. Drag each slider to compare; same camera trajectory throughout.
+      Per scene: <b>left</b> = Baseline vs. <b>Our Baseline</b> (geometry), <b>right</b> = Baseline vs. <b>GuidedVD</b>.
+    </p>
+
+    <h3 class="title is-4 has-text-centered">Mip-NeRF&nbsp;360</h3>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Bicycle</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bicycle_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bicycle_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
+      </div>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Flowers</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/flowers_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/flowers_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
+      </div>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Garden</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/garden_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/garden_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
+      </div>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Stump</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/stump_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/stump_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
+      </div>
+
+    <h3 class="title is-4 has-text-centered mt-5">Mip-NeRF&nbsp;360 &mdash; Indoor</h3>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/kitchen_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Kitchen &mdash; GuidedVD vs. Ours</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/bonsai_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Bonsai &mdash; GuidedVD vs. Ours</p></div>
+      </div>
+
+    <h3 class="title is-4 has-text-centered mt-5">Tanks&nbsp;&amp;&nbsp;Temples</h3>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Truck</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/truck_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/truck_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
+      </div>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Train</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/train_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">GuidedVD</span><span class="cmp-label cmp-right">Ours</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/train_gvd_vs_ours_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">GuidedVD vs. Ours</p></div>
+      </div>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Barn</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/barn_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/barn_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
+      </div>
+      <h4 class="title is-5 has-text-centered mt-4 mb-2">Ignatius</h4>
+      <div class="columns is-centered">
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">Our Baseline</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/ignatius_cmp_geo_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. Our Baseline</p></div>
+        <div class="column is-half"><div class="video-compare-container"><span class="cmp-label cmp-left">Baseline</span><span class="cmp-label cmp-right">GuidedVD</span><video class="video" loop muted playsinline preload="none" onplay="resizeAndPlay(this)"><source src="./static/videos/ignatius_compare_s9.mp4" type="video/mp4"></video><canvas class="videoMerge"></canvas></div><p class="has-text-centered video-caption">Baseline vs. GuidedVD</p></div>
+      </div>
+  </div>
+</section>
+
+<!-- ===================== BIBTEX ===================== -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title is-3">BibTeX</h2>
+    <pre><code>@article{grades,
+  title   = {GradeS: Geometry-Aware Reliability-Guided Diffusion Supervision for Sparse-View 3D Gaussian Splatting},
+  author  = {Choi, Eunhye},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- ===================== FOOTER (keep attribution: CC BY-SA 4.0) ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content has-text-centered">
+          <p>
+            This website is licensed under a
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This page was built using the
+            <a href="https://github.com/eliahuhorwitz/Academic-project-page-template">Academic Project Page Template</a>,
+            which was adopted from the <a href="https://nerfies.github.io">Nerfies</a> project page.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===================== SCRIPTS ===================== -->
+<script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.24/dist/js/bulma-carousel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bulma-slider@2.0.5/dist/js/bulma-slider.min.js"></script>
+<script src="./static/js/video_comparison.js"></script>
+<script src="./static/js/index.js"></script>
+</body>
+</html>
